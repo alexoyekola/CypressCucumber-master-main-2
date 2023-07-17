@@ -31,3 +31,37 @@ jobs:
         with:
           name: dummy-artifact
           path: /dev/null
+
+
+  mochawesome-deploy:
+    needs: cypress-run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      # Download the dummy artifact
+      - name: Download Dummy Artifact
+        if: always()  # Run even if build failed
+        uses: actions/download-artifact@v2
+        with:
+          name: dummy-artifact
+        
+      # Install NPM dependencies, cache them correctly
+      - name: Set Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install Dependencies
+        run: npm install
+        # Generates the mochawesome report and deploys it, making it accessible at:
+        # https://<username>.github.io/<repository>/mochawesome-report (replace <username> and <repository> with your GitHub username and repository name)      
+      - name: Generate Mochawesome Report
+        run: |
+              npx mochawesome-merge cypress/reports/html/.jsons/mochawesome.json > merged-report.json
+              npx mochawesome-report-generator merged-report.json
+      - name: Deploy Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./mochawesome-report
+        
