@@ -1,6 +1,8 @@
 name: Deploy Mochawesome Report
 
-on: [push]
+on:
+    workflow_run:
+        workflows: ["Run all tests"]
 
 permissions:
     contents: read
