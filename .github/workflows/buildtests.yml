@@ -25,4 +25,9 @@ jobs:
         uses: cypress-io/github-action@v4.2.0 # use the explicit version number
         with:
           command: npx cypress run --browser chrome --headless
-
+      # Upload a dummy artifact
+      - name: Upload Dummy Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dummy-artifact
+          path: /dev/null
