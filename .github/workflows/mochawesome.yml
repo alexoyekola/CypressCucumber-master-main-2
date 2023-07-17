@@ -19,7 +19,7 @@ jobs:
       - name: Cypress run with Cucumber
         uses: cypress-io/github-action@v4.2.0 # use the explicit version number
         with:
-          command: npx cypress run
+          command: npx cypress run --browser chrome --headless
       # Generates the mochawesome report and deploys it, making it accessible at:
       # https://<username>.github.io/<repository>/mochawesome-report (replace <username> and <repository> with your GitHub username and repository name)      
       - name: Generate Mochawesome Report
