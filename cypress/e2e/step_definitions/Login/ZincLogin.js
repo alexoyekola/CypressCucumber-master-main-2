@@ -17,9 +17,9 @@ When("User selects sign-in", () => {
 When("User enters correct credentials", () => {
     cy.wait(3000);
     zincLoginPage.elements.username().type("alex@zincwork.com");
-    cy.get('[class*="c3768468a cd7c8bf9c c4a5884bf c127814b1 _button-login-id"]').click();
+    cy.get('[class*="cf1ef5a0b cd6a2dc65 c9f67a967 cd5d5f1f0 _button-login-id"]').click();
     zincLoginPage.elements.password().type("EveryBody78!");
-    cy.get('[class*="c3768468a cd7c8bf9c c4a5884bf c127814b1 _button-login-password"]').click();
+    cy.get('[class*="cf1ef5a0b cd6a2dc65 c9f67a967 cd5d5f1f0 _button-login-password"]').click();
     
 })
 
@@ -31,9 +31,9 @@ Then("User successfully logged into platform", () => {
 When("User enters incorrect credentials", () => {
   cy.wait(3000);
   zincLoginPage.elements.username().type("alex@zincwork.com");
-  cy.get('[class*="c3768468a cd7c8bf9c c4a5884bf c127814b1 _button-login-id"]').click();
+  cy.get('[class*="cf1ef5a0b cd6a2dc65 c9f67a967 cd5d5f1f0 _button-login-id"]').click();
   zincLoginPage.elements.password().type("EveryBody!");
-  cy.get('[class*="c3768468a cd7c8bf9c c4a5884bf c127814b1 _button-login-password"]').click();
+  cy.get('[class*="cf1ef5a0b cd6a2dc65 c9f67a967 cd5d5f1f0 _button-login-password"]').click();
   
 })
 
