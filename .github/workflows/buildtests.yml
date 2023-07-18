@@ -38,15 +38,15 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2  
       - name: Download Dummy Artifact
         if: always()  # Run even if build failed
         uses: actions/download-artifact@v2
         with:
           name: dummy-artifact
-
       - name: Copy Mochawesome Report
         run: cp cypress/reports/html/index.html $GITHUB_WORKSPACE/docs
-
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
