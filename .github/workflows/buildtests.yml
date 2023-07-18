@@ -45,7 +45,7 @@ jobs:
           name: dummy-artifact
 
       - name: Copy Mochawesome Report
-        run: cp -R cypress/reports/html $GITHUB_WORKSPACE/docs
+        run: cp -R cypress/reports/html/index.html $GITHUB_WORKSPACE/docs
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
