@@ -48,8 +48,15 @@ jobs:
       - name: Copy Mochawesome Report
         run: cp cypress/reports/html/index.html $GITHUB_WORKSPACE/docs
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          branch: gh-pages
-          folder: docs  
-          token: ${{ secrets.DEPLOY_TOKEN }}
+        run: |
+            git config user.name 'alexoyekola'
+            git config user.email '40799278+alexoyekola@users.noreply.github.com'
+            git remote set-url origin "https://x-access-token:${{ secrets.DEPLOY_TOKEN }}" && git fetch
+            git checkout gh-pages || git checkout --orphan gh-pages
+            git rm -rf .
+            cp -R cypress/reports/html/* .
+            git add .
+            git commit -m "Deploying to GitHub Pages from ${{ github.repository }}@${{ github.sha }}" --quiet
+            git push origin gh-pages
+        env:
+            DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
