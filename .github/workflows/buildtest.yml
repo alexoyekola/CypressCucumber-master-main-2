@@ -46,19 +46,7 @@ jobs:
         with:
           name: dummy-artifact
       - name: Copy Mochawesome Report
-        run: cp cypress/reports/html/index.html $GITHUB_WORKSPACE/docs
+        run: cp cypress/reports/html/index.html docs/
       - name: Set Deploy Token as Environment Variable
         run: echo "DEPLOY_TOKEN=${{ secrets.DEPLOY_TOKEN }}" >> $GITHUB_ENV
-      - name: Deploy to GitHub Pages
-        run: |
-            git config user.name 'alexoyekola'
-            git config user.email '40799278+alexoyekola@users.noreply.github.com'
-            git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}" && git fetch
-            git checkout gh-pages || git checkout --orphan gh-pages
-            git rm -rf .
-            cp -R cypress/reports/html/* .
-            git add .
-            git commit -m "Deploying to GitHub Pages from ${{ github.repository }}@${{ github.sha }}" --quiet
-            git push origin gh-pages
-        env:
-            DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+
