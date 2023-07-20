@@ -46,7 +46,7 @@ jobs:
         with:
           name: dummy-artifact
       - name: Copy Mochawesome Report
-        run: cp cypress/reports/html/index.html docs/
+        run: cp -r cypress/reports/html/* docs/
       - name: Set Deploy Token as Environment Variable
         run: echo "DEPLOY_TOKEN=${{ secrets.DEPLOY_TOKEN }}" >> $GITHUB_ENV
 

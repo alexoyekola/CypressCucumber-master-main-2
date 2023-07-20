@@ -1,7 +1,7 @@
-Feature: Login 
+@authentication
+Feature: Login
 
-
-Background:
+    Background:
         Given User is on sign-in page
     Scenario: Successful login
         When  User selects sign-in
