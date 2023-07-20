@@ -27,9 +27,6 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     video: false,
     env: {
-      allureReuseAfterSpec: false,
-      allure: false,
-      allureResultsPath: "allure-results",
     },
   },
 });
