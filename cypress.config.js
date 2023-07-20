@@ -22,7 +22,7 @@ module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   e2e: {
     setupNodeEvents,
-    specPattern: "cypress/e2e/features/*.feature",
+    specPattern: "cypress/e2e/features/**/*.feature",
     baseUrl: "https://www.google.com",
     chromeWebSecurity: false,
     video: false,
